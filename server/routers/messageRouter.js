@@ -4,5 +4,6 @@ import MessageController from "../controllers/messageController.js";
 const messageRouter = new Router();
 
 messageRouter.post("/", MessageController.create);
+messageRouter.get("/", MessageController.get);
 
 export default messageRouter;

@@ -6,6 +6,16 @@ class MessageController {
       const message = await MessageService.create(req.body);
       res.status(201).json(message);
     } catch (err) {
+      console.log(err)
+      res.status(500).json(err.message);
+    }
+  }
+
+  async get(req, res) {
+    try {
+      const result = await MessageService.get();
+      res.status(201).json(result);
+    } catch (err) {
       res.status(500).json(err.message);
     }
   }
