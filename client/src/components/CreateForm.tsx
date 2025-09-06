@@ -13,9 +13,11 @@ const CreateForm = () => {
             resolver: zodResolver(MessageFormDataSchema)
         });
 
+
     const onSumbit: SubmitHandler<MessageFormData> = async (data: MessageFormData) => {
+        const backendUrl = 'http://localhost:5500'
         try {
-            const response = await fetch('http://localhost:5500/api/messages', {
+            const response = await fetch(`${backendUrl}/api/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +30,7 @@ const CreateForm = () => {
                 reset()
             }
         } catch (err) {
-           console.log('Сообщение не отправлено из-за ошибки сервера', err)
+            console.log('Сообщение не отправлено из-за ошибки сервера', err)
         }
     }
 
@@ -40,7 +42,7 @@ const CreateForm = () => {
             <div className='flex flex-col w-full'>
                 <input {...register('name')}
                     id='name'
-                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400'
+                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400 transition-all duration-300 ease-in-out'
                     placeholder='Введите имя' />
                 <p className='font-light text-red-700 text-sm'>
                     {errors?.name?.message}
@@ -50,7 +52,7 @@ const CreateForm = () => {
             <div className='flex flex-col w-full'>
                 <input {...register('phone')}
                     id='phone'
-                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400'
+                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400 transition-all duration-300 ease-in-out'
                     placeholder='Введите номер телефона' />
                 <p className='font-light text-red-700 text-sm'>
                     {errors?.phone?.message}
@@ -59,7 +61,7 @@ const CreateForm = () => {
             <div className='flex flex-col w-full'>
                 <textarea {...register('message')}
                     id='message'
-                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400'
+                    className='border-2 border-amber-950 rounded-2xl min-w-[300px] pz-1 px-2 hover:border-amber-400 transition-all duration-300 ease-in-out'
                     placeholder='Введите сообщение' />
                 <p className='font-light text-red-700 text-sm'>
                     {errors?.message?.message}
@@ -68,7 +70,7 @@ const CreateForm = () => {
 
             <button disabled={isSubmitting}
                 type='submit'
-                className=' text-lg border-2 rounded-2xl max-w-[150px] border-amber-950 text-amber-950 hover:border-amber-400 hover:text-amber-400 disabled:text-grey-700 disabled:border-grey-700'>
+                className=' text-lg border-2 rounded-2xl max-w-[150px] border-amber-950 text-amber-950 hover:border-amber-400 hover:text-amber-400 disabled:text-grey-700 disabled:border-grey-700 transition-all duration-300 ease-in-out'>
                 {isSubmitting ? 'Отправка...' : 'Отправить'}
             </button>
         </form>
